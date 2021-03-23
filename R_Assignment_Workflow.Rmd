@@ -157,7 +157,7 @@ The output of this command will produce a dataframe of rows consisting of the sp
 - To also accommodate for the remaining chromosomes, simply replace "1" with whichever chromosome number you tend to organize next
 
 ```{r echo=TRUE, results='hide'}
-chromosome1_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "1"))
+chromosome1_maize <- as.data.frame(filter(maize_SCP, maize_SCP$Chromosome == "1"))
 ```
 \ 
 
@@ -397,15 +397,15 @@ First I need to create all the chromosome files unordered.
 Then I will be repeating code I used earlier but showing the creation of all the ordered chromosome files for increasing order in maize and teosinte, along with decreasing order in maize and teosinte.  
  
 ```{r echo=TRUE, warning=FALSE, results='hide'}
-chromosome2_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "2"))
-chromosome3_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "3"))
-chromosome4_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "4"))
-chromosome5_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "5"))
-chromosome6_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "6"))
-chromosome7_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "7"))
-chromosome8_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "8"))
-chromosome9_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "9"))
-chromosome10_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "10"))
+chromosome2_maize <- as.data.frame(filter(maize_SCP, maize_SCP$Chromosome == "2"))
+chromosome3_maize <- as.data.frame(filter(maize_SCP, maize_SCP$Chromosome == "3"))
+chromosome4_maize <- as.data.frame(filter(maize_SCP, maize_SCP$Chromosome == "4"))
+chromosome5_maize <- as.data.frame(filter(maize_SCP, maize_SCP$Chromosome == "5"))
+chromosome6_maize <- as.data.frame(filter(maize_SCP, maize_SCP$Chromosome == "6"))
+chromosome7_maize <- as.data.frame(filter(maize_SCP, maize_SCP$Chromosome == "7"))
+chromosome8_maize <- as.data.frame(filter(maize_SCP, maize_SCP$Chromosome == "8"))
+chromosome9_maize <- as.data.frame(filter(maize_SCP, maize_SCP$Chromosome == "9"))
+chromosome10_maize <- as.data.frame(filter(maize_SCP, maize_SCP$Chromosome == "10"))
 
 chromosome2_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "2"))
 chromosome3_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "3"))

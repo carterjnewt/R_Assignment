@@ -29,10 +29,10 @@ When these commands are ran and displayed in the Environment tab, information is
 - fang_et_al_genotypes.txt has 986 columns and 2782 lines  
 - snp_position.txt has 15 columns and 983 lines  
 
-```{r results='asis'}
+```{r echo=TRUE, results='asis'}
 f <- read.delim("original_files/fang_et_al_genotypes.txt")
 ```
-```{r results='asis'}
+```{r echo=TRUE, results='asis'}
 s <- read.delim("original_files/snp_position.txt")
 ```
 \ 
@@ -325,7 +325,7 @@ Next we are going to make a graph showing the distribution of SNP position on th
 Like earlier, I will compute everything in one command and explain each chunk below.
 We will use the previous file "s_f_SCP" for this command.
 
-```{r echo=TRUE, results='asis'}
+```{r echo=TRUE, warning=FALSE, results='asis'}
 distribution <- ggplot(s_f_SCP) + geom_point(mapping = aes(x = as.numeric(s_f_SCP$Chromosome), y = as.numeric(s_f_SCP$Position)), color = s_f_SCP$Chromosome, size = 5, shape = "_") + scale_x_continuous(breaks = scales::pretty_breaks(n=10)) + labs(x = "Chromosome Number", y= "SNP Position on Chromosome", title = "Distribution of SNPs on Chromosomes") + scale_y_continuous(breaks = scales::pretty_breaks(n=8)) + theme_minimal();
 distribution 
 ```
@@ -374,3 +374,517 @@ f_final[f_final != "Homozygous" & f_final != "Missing"] <- "Heterozygous"
 \ 
 
 I don't really know where to go from here. I feel like I am taking the wrong approach but don't know what to fix. 
+\ 
+
+***
+
+# Peer Review
+\ 
+
+## Overview
+\ 
+
+The feedback I received wasn't very beneficial as I was hoping to get some advice on how to make the last graph of the project.  
+However, I do have an idea of how to do it now so I will explain any changes I've made after sending my repository out to be reviewed. 
+
+***
+
+### Part 1 Changes
+\ 
+
+For my first change, I want to create all chromosome files on my rmarkdown file instead of saying "change this value".  
+First I need to create all the chromosome files unordered.  
+Then I will be repeating code I used earlier but showing the creation of all the ordered chromosome files for increasing order in maize and teosinte, along with decreasing order in maize and teosinte.  
+ 
+```{r echo=TRUE, warning=FALSE, results='hide'}
+chromosome2_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "2"))
+chromosome3_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "3"))
+chromosome4_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "4"))
+chromosome5_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "5"))
+chromosome6_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "6"))
+chromosome7_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "7"))
+chromosome8_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "8"))
+chromosome9_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "9"))
+chromosome10_maize <- as.data.frame(filter(maize_SCP, "Chromosome" == "10"))
+
+chromosome2_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "2"))
+chromosome3_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "3"))
+chromosome4_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "4"))
+chromosome5_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "5"))
+chromosome6_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "6"))
+chromosome7_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "7"))
+chromosome8_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "8"))
+chromosome9_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "9"))
+chromosome10_teosinte <- as.data.frame(filter(teosinte_SCP, teosinte_SCP$Chromosome == "10"))
+```
+```{r echo=TRUE, warning=FALSE, results='hide'}
+chromosome2_maize_increasing <- chromosome2_maize[order(as.numeric(as.character(chromosome2_maize$Position))),]
+
+chromosome3_maize_increasing <- chromosome3_maize[order(as.numeric(as.character(chromosome3_maize$Position))),]
+
+chromosome4_maize_increasing <- chromosome4_maize[order(as.numeric(as.character(chromosome4_maize$Position))),]
+
+chromosome5_maize_increasing <- chromosome5_maize[order(as.numeric(as.character(chromosome5_maize$Position))),]
+
+chromosome6_maize_increasing <- chromosome6_maize[order(as.numeric(as.character(chromosome6_maize$Position))),]
+
+chromosome7_maize_increasing <- chromosome7_maize[order(as.numeric(as.character(chromosome7_maize$Position))),]
+
+chromosome8_maize_increasing <- chromosome8_maize[order(as.numeric(as.character(chromosome8_maize$Position))),]
+
+chromosome9_maize_increasing <- chromosome9_maize[order(as.numeric(as.character(chromosome9_maize$Position))),]
+
+chromosome10_maize_increasing <- chromosome10_maize[order(as.numeric(as.character(chromosome10_maize$Position))),]
+```
+```{r echo=TRUE, warning=FALSE, results='hide'}
+chromosome2_teosinte_increasing <- chromosome2_teosinte[order(as.numeric(as.character(chromosome2_teosinte$Position))),]
+
+chromosome3_teosinte_increasing <- chromosome3_teosinte[order(as.numeric(as.character(chromosome3_teosinte$Position))),]
+
+chromosome4_teosinte_increasing <- chromosome4_teosinte[order(as.numeric(as.character(chromosome4_teosinte$Position))),]
+
+chromosome5_teosinte_increasing <- chromosome5_teosinte[order(as.numeric(as.character(chromosome5_teosinte$Position))),]
+
+chromosome6_teosinte_increasing <- chromosome6_teosinte[order(as.numeric(as.character(chromosome6_teosinte$Position))),]
+
+chromosome7_teosinte_increasing <- chromosome7_teosinte[order(as.numeric(as.character(chromosome7_teosinte$Position))),]
+
+chromosome8_teosinte_increasing <- chromosome8_teosinte[order(as.numeric(as.character(chromosome8_teosinte$Position))),]
+
+chromosome9_teosinte_increasing <- chromosome9_teosinte[order(as.numeric(as.character(chromosome9_teosinte$Position))),]
+
+chromosome10_teosinte_increasing <- chromosome10_teosinte[order(as.numeric(as.character(chromosome10_teosinte$Position))),]
+```
+```{r echo=TRUE, warning=FALSE, results='hide'}
+chromosome2_maize_decreasing <- chromosome2_maize[order(decreasing = TRUE, as.numeric(as.character(chromosome2_maize$Position))),]
+
+chromosome3_maize_decreasing <- chromosome3_maize[order(decreasing = TRUE, as.numeric(as.character(chromosome3_maize$Position))),]
+
+chromosome4_maize_decreasing <- chromosome4_maize[order(decreasing = TRUE, as.numeric(as.character(chromosome4_maize$Position))),]
+
+chromosome5_maize_decreasing <- chromosome5_maize[order(decreasing = TRUE, as.numeric(as.character(chromosome5_maize$Position))),]
+
+chromosome6_maize_decreasing <- chromosome6_maize[order(decreasing = TRUE, as.numeric(as.character(chromosome6_maize$Position))),]
+
+chromosome7_maize_decreasing <- chromosome7_maize[order(decreasing = TRUE, as.numeric(as.character(chromosome7_maize$Position))),]
+
+chromosome8_maize_decreasing <- chromosome8_maize[order(decreasing = TRUE, as.numeric(as.character(chromosome8_maize$Position))),]
+
+chromosome9_maize_decreasing <- chromosome9_maize[order(decreasing = TRUE, as.numeric(as.character(chromosome9_maize$Position))),]
+
+chromosome10_maize_decreasing <- chromosome10_maize[order(decreasing = TRUE, as.numeric(as.character(chromosome10_maize$Position))),]
+```
+```{r echo=TRUE, warning=FALSE, results='hide'}
+chromosome2_teosinte_decreasing <- chromosome2_teosinte[order(decreasing = TRUE, as.numeric(as.character(chromosome2_teosinte$Position))),]
+
+chromosome3_teosinte_decreasing <- chromosome3_teosinte[order(decreasing = TRUE, as.numeric(as.character(chromosome3_teosinte$Position))),]
+
+chromosome4_teosinte_decreasing <- chromosome4_teosinte[order(decreasing = TRUE, as.numeric(as.character(chromosome4_teosinte$Position))),]
+
+chromosome5_teosinte_decreasing <- chromosome5_teosinte[order(decreasing = TRUE, as.numeric(as.character(chromosome5_teosinte$Position))),]
+
+chromosome6_teosinte_decreasing <- chromosome6_teosinte[order(decreasing = TRUE, as.numeric(as.character(chromosome6_teosinte$Position))),]
+
+chromosome7_teosinte_decreasing <- chromosome7_teosinte[order(decreasing = TRUE, as.numeric(as.character(chromosome7_teosinte$Position))),]
+
+chromosome8_teosinte_decreasing <- chromosome8_teosinte[order(decreasing = TRUE, as.numeric(as.character(chromosome8_teosinte$Position))),]
+
+chromosome9_teosinte_decreasing <- chromosome9_teosinte[order(decreasing = TRUE, as.numeric(as.character(chromosome9_teosinte$Position))),]
+
+chromosome10_teosinte_decreasing <- chromosome10_teosinte[order(decreasing = TRUE, as.numeric(as.character(chromosome10_teosinte$Position))),]
+```
+\ 
+
+Next, we're going to convert all of those files into .txt files so that they can be viewed on the repository as well.  
+
+
+```{r echo=TRUE, results='hide'}
+write.table(chromosome1_maize_increasing, "chromosome1_maize_increasing.txt", sep = "\t")
+write.table(chromosome2_maize_increasing, "chromosome2_maize_increasing.txt", sep = "\t")
+write.table(chromosome3_maize_increasing, "chromosome3_maize_increasing.txt", sep = "\t")
+write.table(chromosome4_maize_increasing, "chromosome4_maize_increasing.txt", sep = "\t")
+write.table(chromosome5_maize_increasing, "chromosome5_maize_increasing.txt", sep = "\t")
+write.table(chromosome6_maize_increasing, "chromosome6_maize_increasing.txt", sep = "\t")
+write.table(chromosome7_maize_increasing, "chromosome7_maize_increasing.txt", sep = "\t")
+write.table(chromosome8_maize_increasing, "chromosome8_maize_increasing.txt", sep = "\t")
+write.table(chromosome9_maize_increasing, "chromosome9_maize_increasing.txt", sep = "\t")
+write.table(chromosome10_maize_increasing, "chromosome10_maize_increasing.txt", sep = "\t")
+
+write.table(chromosome1_maize_decreasing, "chromosome1_maize_decreasing.txt", sep = "\t")
+write.table(chromosome2_maize_decreasing, "chromosome2_maize_decreasing.txt", sep = "\t")
+write.table(chromosome3_maize_decreasing, "chromosome3_maize_decreasing.txt", sep = "\t")
+write.table(chromosome4_maize_decreasing, "chromosome4_maize_decreasing.txt", sep = "\t")
+write.table(chromosome5_maize_decreasing, "chromosome5_maize_decreasing.txt", sep = "\t")
+write.table(chromosome6_maize_decreasing, "chromosome6_maize_decreasing.txt", sep = "\t")
+write.table(chromosome7_maize_decreasing, "chromosome7_maize_decreasing.txt", sep = "\t")
+write.table(chromosome8_maize_decreasing, "chromosome8_maize_decreasing.txt", sep = "\t")
+write.table(chromosome9_maize_decreasing, "chromosome9_maize_decreasing.txt", sep = "\t")
+write.table(chromosome10_maize_decreasing, "chromosome10_maize_decreasing.txt", sep = "\t")
+
+write.table(chromosome1_teosinte_increasing, "chromosome1_teosinte_increasing.txt", sep = "\t")
+write.table(chromosome2_teosinte_increasing, "chromosome2_teosinte_increasing.txt", sep = "\t")
+write.table(chromosome3_teosinte_increasing, "chromosome3_teosinte_increasing.txt", sep = "\t")
+write.table(chromosome4_teosinte_increasing, "chromosome4_teosinte_increasing.txt", sep = "\t")
+write.table(chromosome5_teosinte_increasing, "chromosome5_teosinte_increasing.txt", sep = "\t")
+write.table(chromosome6_teosinte_increasing, "chromosome6_teosinte_increasing.txt", sep = "\t")
+write.table(chromosome7_teosinte_increasing, "chromosome7_teosinte_increasing.txt", sep = "\t")
+write.table(chromosome8_teosinte_increasing, "chromosome8_teosinte_increasing.txt", sep = "\t")
+write.table(chromosome9_teosinte_increasing, "chromosome9_teosinte_increasing.txt", sep = "\t")
+write.table(chromosome10_teosinte_increasing, "chromosome10_teosinte_increasing.txt", sep = "\t")
+
+write.table(chromosome1_teosinte_decreasing, "chromosome1_teosinte_decreasing.txt", sep = "\t")
+write.table(chromosome2_teosinte_decreasing, "chromosome2_teosinte_decreasing.txt", sep = "\t")
+write.table(chromosome3_teosinte_decreasing, "chromosome3_teosinte_decreasing.txt", sep = "\t")
+write.table(chromosome4_teosinte_decreasing, "chromosome4_teosinte_decreasing.txt", sep = "\t")
+write.table(chromosome5_teosinte_decreasing, "chromosome5_teosinte_decreasing.txt", sep = "\t")
+write.table(chromosome6_teosinte_decreasing, "chromosome6_teosinte_decreasing.txt", sep = "\t")
+write.table(chromosome7_teosinte_decreasing, "chromosome7_teosinte_decreasing.txt", sep = "\t")
+write.table(chromosome8_teosinte_decreasing, "chromosome8_teosinte_decreasing.txt", sep = "\t")
+write.table(chromosome9_teosinte_decreasing, "chromosome9_teosinte_decreasing.txt", sep = "\t")
+write.table(chromosome10_teosinte_decreasing, "chromosome10_teosinte_decreasing.txt", sep = "\t")
+```
+\ 
+
+***
+
+### Part 2 Changes
+\ 
+
+- Any code used in the section "Missing Data and Amount of Heterozygosity" during the first section of this rmarkdown file will not be used going forward
+- We will be remaking all new code 
+\ 
+
+First I need to produce graphs for Homozygosity and then my own idea.  
+We will begin with the Homozygosity graph.  
+\ 
+
+To start, we need to filter out data in files "maize_SCP" and "teosinte_SCP".
+
+- We are going to filter out whenever the "Position" or "Chromosome" column contains "unknown" or "multiple" within it
+- Make sure to run library(dplyr) if you get an error attempting to run the code below
+
+```{r echo=TRUE, results='hide'}
+maize_base_SCP <- filter(maize_SCP, maize_SCP$Position != "unknown", maize_SCP$Position != "multiple", maize_SCP$Chromosome != "unknown", maize_SCP$Chromosome != "multiple")
+
+teosinte_base_SCP <- filter(teosinte_SCP, teosinte_SCP$Position != "unknown", teosinte_SCP$Position != "multiple", teosinte_SCP$Chromosome != "unknown", teosinte_SCP$Chromosome != "multiple")
+
+```
+\ 
+
+Now, we need to make it so that each genotypic value (A/A, T/T, ...) has its own row respective to the "SNP_ID" and "Group". 
+We will also need to revive the old file "f" and use this to make a data.frame that contains only "Sample_ID" and "Group" as the columns.  
+To do this we are going to use the command pivot_longer() as followed:  
+
+  - make sure to run library(tidyr), library(dplyr), and library(readr) prior to this command
+  
+```{r echo=TRUE, results='hide'}
+library(tidyr)
+library(dplyr)
+library(readr)
+```
+```{r echo=TRUE, results='hide'}
+maize_final <- pivot_longer(maize_base_SCP, c(4:1576))
+teosinte_final <- pivot_longer(teosinte_base_SCP, c(4:978))
+
+merge_f <- select(f, c(1, 3))
+
+maize_graph_data <- merge(maize_final, merge_f, by.x = "name", by.y = "Group")
+teosinte_graph_data <- merge(teosinte_final, merge_f, by.x = "name", by.y = "Group")
+```
+\ 
+
+Now we need to basically copy the "value" column and make a replicate of it.  
+This replicated column will act as our column to indicate "Homozygosity", "Heterozygosity", or "Missing".  
+
+```{r echo=TRUE, results='hide'}
+maize_graph_data <- mutate(maize_graph_data, Genotype = value)
+teosinte_graph_data <- mutate(teosinte_graph_data, Genotype = value)
+```
+\ 
+
+Next we go in and adjust the "Genotype" column by replacing values with "Homozygous", "Heterozygous", or "Missing".  
+
+```{r echo=TRUE, results='hide'}
+maize_graph_data$Genotype[maize_graph_data$Genotype == "A/A"] <- "Homozygous"
+maize_graph_data$Genotype[maize_graph_data$Genotype == "T/T"] <- "Homozygous"
+maize_graph_data$Genotype[maize_graph_data$Genotype == "C/C"] <- "Homozygous"
+maize_graph_data$Genotype[maize_graph_data$Genotype == "G/G"] <- "Homozygous"
+maize_graph_data$Genotype[maize_graph_data$Genotype != "Homozygous"] <- "Heterozygous"
+maize_graph_data$Genotype[maize_graph_data$value == "?/?"] <- "Missing"
+
+teosinte_graph_data$Genotype[teosinte_graph_data$Genotype == "A/A"] <- "Homozygous"
+teosinte_graph_data$Genotype[teosinte_graph_data$Genotype == "T/T"] <- "Homozygous"
+teosinte_graph_data$Genotype[teosinte_graph_data$Genotype == "C/C"] <- "Homozygous"
+teosinte_graph_data$Genotype[teosinte_graph_data$Genotype == "G/G"] <- "Homozygous"
+teosinte_graph_data$Genotype[teosinte_graph_data$Genotype != "Homozygous"] <- "Heterozygous"
+teosinte_graph_data$Genotype[teosinte_graph_data$value == "?/?"] <- "Missing"
+```
+\ 
+
+Now that we have all of our data ready, we can now make the graphs.  
+First, we will make a graph consisting of all Maize samples. 
+
+- I feel as though my graph is not suppose to plot the way it is (as in the large chunks have equivalent amounts of homozygosity, heterozygosity, and missing)
+- I troubleshot multiple times and, to no avail, my graphs remained the same every time
+
+```{r echo=TRUE}
+maize_nogroup <- ggplot(maize_graph_data) + geom_bar(mapping = aes(x = Sample_ID, fill = Genotype), width = 1) + labs(title = "Genotype Distribution Amongst Maize", x = "Sample ID", y = "Total Number of SNPs (939 SNPs)") + theme_minimal() + scale_fill_brewer(palette = "Pastel1") + scale_x_discrete(labels = NULL)
+maize_nogroup
+```
+\ 
+
+Next, we will separate the maize samples based on their respective groups. 
+
+```{r echo=TRUE}
+maize_group <- ggplot(maize_graph_data) + geom_bar(mapping = aes(x = Sample_ID, fill = Genotype), width = 1) + labs(title = "Genotype Distribution Amongst Different Maize Groups", x = "Sample ID", y = "Total Number of SNPs (939 SNPs)") + theme_minimal() + scale_fill_brewer(palette = "Pastel1") + scale_x_discrete(labels = NULL) + facet_grid(~ maize_graph_data$name, space = "free", scales = "free")
+maize_group
+```
+\ 
+
+Lastly, we will make the same two graphs as above but for teosinte now. 
+
+```{r echo=TRUE}
+teosinte_nogroup <- ggplot(teosinte_graph_data) + geom_bar(mapping = aes(x = Sample_ID, fill = Genotype), width = 1) + labs(title = "Genotype Distribution Amongst Teosinte", x = "Sample ID", y = "Total Number of SNPs (939 SNPs)") + theme_minimal() + scale_fill_brewer(palette = "Pastel1") + scale_x_discrete(labels = NULL)
+teosinte_nogroup
+```
+\ 
+
+```{r echo=TRUE}
+teosinte_group <- ggplot(teosinte_graph_data) + geom_bar(mapping = aes(x = Sample_ID, fill = Genotype), width = 1) + labs(title = "Genotype Distribution Amongst Different Teosinte Groups", x = "Sample ID", y = "Total Number of SNPs (939 SNPs)") + theme_minimal() + scale_fill_brewer(palette = "Pastel1") + scale_x_discrete(labels = NULL) + facet_grid(~ teosinte_graph_data$name, space = "free", scales = "free")
+teosinte_group
+```
+\ 
+
+The last section of this project consists of creating a visual of our choice.  
+For mine, I will be producing a visual that represents the distribution of purine and pyrimidine nucleotides per chromosome in SNPs.  
+To begin this, we need to regenerate the files "s" and "f".
+
+- We're going to utilize the same code used at the very start of this project but with simple modifications
+
+```{r echo=TRUE, results='hide'}
+trans_f <- as.data.frame(t(f))
+custom_f <- tibble::rownames_to_column(trans_f, "row_names")
+custom_f <- custom_f[-c(2, 3),]
+colnames(custom_f) <- as.character(custom_f[1, ])
+custom_f <- custom_f[-c(1),]
+custom_s_f <- merge(s, custom_f, by.x = "SNP_ID", by.y = "Sample_ID")
+custom_s_f <- select(custom_s_f, c(1, 3, 16:2797))
+custom_s_f <- pivot_longer(custom_s_f, c(3:2784))
+```
+\ 
+
+We've made our base file, now we need to filter out data we don't need.
+
+```{r echo=TRUE, results='hide'}
+custom_s_f <- filter(custom_s_f, custom_s_f$Chromosome != "unknown", custom_s_f$Chromosome != "multiple")
+```
+\ 
+
+Now that we have gotten rid of undefined chromosome values, we can start organizing our file into separate chromosome files.  
+We also need to remove "?/?" values from the "value" column once we have separated our files.  
+
+```{r echo=TRUE, results='hide'}
+custom1 <- as.data.frame(filter(custom_s_f, custom_s_f$Chromosome == "1"))
+custom2 <- as.data.frame(filter(custom_s_f, custom_s_f$Chromosome == "2"))
+custom3 <- as.data.frame(filter(custom_s_f, custom_s_f$Chromosome == "3"))
+custom4 <- as.data.frame(filter(custom_s_f, custom_s_f$Chromosome == "4"))
+custom5 <- as.data.frame(filter(custom_s_f, custom_s_f$Chromosome == "5"))
+custom6 <- as.data.frame(filter(custom_s_f, custom_s_f$Chromosome == "6"))
+custom7 <- as.data.frame(filter(custom_s_f, custom_s_f$Chromosome == "7"))
+custom8 <- as.data.frame(filter(custom_s_f, custom_s_f$Chromosome == "8"))
+custom9 <- as.data.frame(filter(custom_s_f, custom_s_f$Chromosome == "9"))
+custom10 <- as.data.frame(filter(custom_s_f, custom_s_f$Chromosome == "10"))
+
+
+custom1 <- filter(custom1, custom1$value != "?/?")
+custom2 <- filter(custom2, custom2$value != "?/?")
+custom3 <- filter(custom3, custom3$value != "?/?")
+custom4 <- filter(custom4, custom4$value != "?/?")
+custom5 <- filter(custom5, custom5$value != "?/?")
+custom6 <- filter(custom6, custom6$value != "?/?")
+custom7 <- filter(custom7, custom7$value != "?/?")
+custom8 <- filter(custom8, custom8$value != "?/?")
+custom9 <- filter(custom9, custom9$value != "?/?")
+custom10 <- filter(custom10, custom10$value != "?/?")
+```
+\ 
+
+Next, we need to find out the number of all the different types genotypes possible in the "value" column.  
+This will help us calculate a percentage of purine and pyrimidine bases per chromosome.
+
+- I'll show the output of "chrom1" so you can get an idea of what it looks like.  
+
+```{r echo=TRUE}
+chrom1 <- table(custom1$value)
+chrom2 <- table(custom2$value)
+chrom3 <- table(custom3$value)
+chrom4 <- table(custom4$value)
+chrom5 <- table(custom5$value)
+chrom6 <- table(custom6$value)
+chrom7 <- table(custom7$value)
+chrom8 <- table(custom8$value)
+chrom9 <- table(custom9$value)
+chrom10 <- table(custom10$value)
+```
+\ 
+
+Next, we need to produce percent values for the purines and pyrmidine bases on each chromosome.  
+First we view the variable for whichever chromosome we want to work with, for example if we choose to work with chromosome 1 we will view "chrom1".  
+This then displays the values of how many times a certain genoptype appears on each chromosome in our console.  
+Next we need to create variables that represent the total amount of each nitrogen base present on the chromosome.  
+After that, we add up the bases that correlate to purine and to pyrimidine and divide that by the total amount of nitrogen bases.  
+
+```{r echo=TRUE}
+chrom1
+```
+```{r echo=TRUE, results='hide'}
+A1 <- (72716*2) + 5295 + 17080 + 6021
+T1 <- (73771*2) + 6041 + 20562 + 6021
+C1 <- (113052*2) + 5295 + 7206 + 20562
+G1 <- (86096*2) + 17080 + 7206 + 6041
+Total1 <- chrom1*2
+Total1 <- sum(chrom1)*2
+purine1 <- (A1+G1)/Total1
+pyrmidine11 <- (T1+C1)/Total1
+pyrimidine1 <- (T1+C1)/Total1
+```
+```{r echo=TRUE}
+chrom2
+```
+```{r echo=TRUE, results='hide'}
+A2 <- (50864*2)+5231+23324+1807
+T2 <- (53845*2)+4804+18103+1807
+C2 <- (74757*2)+5231+9810+18103
+G2 <- (91969*2)+23324+9810+4804
+Total2 <- sum(chrom2)*2
+purine2 <- (A2+G2)/Total2
+pyrimidine2 <- (T2+C2)/Total2
+```
+```{r echo=TRUE}
+chrom3
+```
+```{r echo=TRUE, results='hide'}
+A3 <- (47836*2)+3519+14681+2971
+T3 <- (41234*2)+3072+18134+2971
+C3 <- (69894*2)+3519+5502+18134
+G3 <- (76314*2)+14861+5502+3072
+Total3 <- sum(chrom3)
+Total3 <- sum(chrom3)*2
+purine3 <- (A3+G3)/Total3
+pyrimidine3 <- (T3+C3)/Total3
+```
+```{r echo=TRUE}
+chrom4
+```
+```{r echo=TRUE, results='hide'}
+A4 <- (35588*2)+873+15386+1059
+T4 <- (30763*2)+2166+15185+1059
+G4 <- (61911*2)+15386+4547+2166
+C4 <- (72075*2)+873+4547+15185
+Total4 <- sum(chrom4)*2
+purine4 <- (A4+G4)/Total4
+pyrimidine4 <- (T4+C4)/Total4
+```
+```{r echo=TRUE}
+chrom5
+```
+```{r echo=TRUE, results='hide'}
+A5 <- (40635*2)+2192+15852+4142
+T5 <- (60938*2)+5685+26138+4142
+G5 <- (69474*2)+15852+6446+5685
+C5 <- (94128*2)+2192+6446+26138
+Total5 <- sum(chrom5)*2
+purine5 <- (A5+G5)/Total5
+pyrimidine5 <- (T5+C5)/Total5
+```
+```{r echo=TRUE}
+chrom6
+```
+```{r echo=TRUE, results='hide'}
+A6 <- (35050*2)+4675+9883+4235
+T6 <-(29115*2)+1726+12373+4235
+G6 <- (38355*2)+9883+4475+1726
+C6 <- (60979*2)+4675+4475+12373
+Total6 <- sum
+Total6 <- sum(chrom6)*2
+purine6 <- (A6+G6)/Total6
+pyrimidine6 <- (T6+C6)/Total6
+```
+```{r echo=TRUE}
+chrom7
+```
+```{r echo=TRUE, results='hide'}
+A7 <- (44128*2)+4224+13540+2873
+T7 <- (50782*2)+2873+15617+1426
+G7 <- (46012*2)+13540+4821+1426
+C7 <- (73511*2)+4224+4821+15617
+Total7 <- sum(chrom7)*2
+purine7 <- (A7+G7)/Total7
+pyrimidine7 <- (T7+C7)/Total7
+```
+```{r echo=TRUE}
+chrom8
+```
+```{r echo=TRUE, results='hide'}
+A8 <- (30370*2)+2285+6864+2102
+T8 <- (33139*2)+2102+13068+2024
+G8 <- (31262*2)+6864+1032+2024
+C8 <- (42271*2)+2285+1032+13068
+Total8 <- sum(chrom8)*2
+purine8 <- (A8+G8)/Total8
+pyrimidine8 <- (T8+C8)/Total8
+```
+```{r echo=TRUE}
+chrom9
+```
+```{r echo=TRUE, results='hide'}
+A9 <- (15807*2)+1470+5271+309
+T9 <- (25740*2)+309+11807+1042
+G9 <- (26797*2)+5271+4182+1042
+C9 <- (66532*2)+1470+4182+11807
+Total9 <- sum(chrom9)*2
+purine9 <- (A9+G9)/Total9
+pyrimidine9 <- (T9+C9)/Total9
+```
+```{r echo=TRUE}
+chrom10
+```
+```{r echo=TRUE, results='hide'}
+A10 <- (18768*2)+2983+6798+731
+T10 <- (18691*2)+2748+6870+731
+G10 <- (37830*2)+6798+3927+2748
+C10 <- (40858*2)+2983+3927+6870
+Total10 <- sum(chrom10)*2
+purine10 <- (A10+G10)/Total10
+pyrimidine10 <- (T10+C10)/Total10
+```
+\ 
+
+Now that we have all the purine and pyrmidine percentages for each chromosome, we need to combine them into vectors so that we can form a data.frame for our graph.  
+
+```{r echo=TRUE}
+purine <- c(purine1, purine2, purine3, purine4, purine5, purine6, purine7, purine8, purine9, purine10)
+
+pyrimidine <- c(pyrimidine1, pyrimidine2, pyrimidine3, pyrimidine4, pyrimidine5, pyrimidine6, pyrimidine7, pyrimidine8, pyrimidine9, pyrimidine10)
+
+chromosome <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+nitrogenbase_percent <- c(purine, pyrimidine)
+nitrogenbase_type <- c("purine", "purine", "purine", "purine", "purine", "purine", "purine", "purine", "purine", "purine", "pyrimidine", "pyrimidine", "pyrimidine", "pyrimidine", "pyrimidine", "pyrimidine", "pyrimidine", "pyrimidine", "pyrimidine", "pyrimidine")
+
+customgraph_data <- data.frame(chromosome, nitrogenbase_percent, nitrogenbase_type)
+```
+\ 
+
+Now that we have our data.frame file made, all we need to do is set the parameters for our graph.  
+
+```{r echo=TRUE}
+finalgraph <- ggplot(customgraph_data) + geom_col(mapping = aes(x = chromosome, y = nitrogenbase_percent, fill = nitrogenbase_type)) + labs(title = "Purine and Pyrimidine Distribution Amongst Chromosomes", x = "Chromosome Number", y = "Percentage") + scale_x_continuous(breaks = scales::pretty_breaks(n=10)) + scale_y_continuous(breaks = scales::pretty_breaks(n=8)) + theme_minimal() + guides(fill = guide_legend(title = "Nitrogen Base"))
+finalgraph
+```
+\ 
+
+That then concludes my project!
+\ 
+
+### End of Project 

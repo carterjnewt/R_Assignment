@@ -1,11 +1,12 @@
-#R Assignment
+# R Assignment
+
 Carter Newton
 
-##General Orginization
+## General Orginization
 
-- I have included .RData files in accordance to what Part they were used for
-- I'm hoping by providing those that you can knit my RMarkdown file and everything should generate as long as the working directory is set in the file that views both folders called "Part1" and "Part2" 
-
-- I got stuck on the last graph and truly don't know how to make it
-- If you have any advice I would greatly appreciate it!
-- If not I do plan on continuing to work on it this weekend and hopefully I can get it figured out soon!
+- I have four main files 
+  - File "Part1" contains all .RData files created during Part1 of the project and all .txt files for the chromosome files 
+  - File "Part2" contains all .RData files created during Part2
+  - File "original_files" contains the two .txt files that were supplied for this project
+  - File "Extra" contains a ".gitignore" file, along with files from my peer review's
+- Lastly, the .Rmd file "R_Assignment_Workflow" is an Rmarkdown file consisting of all the code I used during the span of this project and lays an outline on how to reproduce the project
